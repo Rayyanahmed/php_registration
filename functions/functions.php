@@ -127,6 +127,9 @@ function validate_user_registration() {
 			if(register_user($first_name, $last_name, $username, $email, $password)) {
 				set_message("<p class='bg-success text-center'>Please check your email for activation link </p>");
 				redirect("index.php");
+			} else {
+				set_message("<p class='bg-danger text-center'>Sorry we could not register you</p>");
+				redirect("index.php");
 			}
 		}
 	}
@@ -134,7 +137,7 @@ function validate_user_registration() {
 
 
 function send_email($email, $subject, $msg, $headers) {
-	return mail($email, $subject, $msg, $headers)
+	return mail($email, $subject, $msg, $headers);
 }
 
 // Functions for REGISTRATION
@@ -163,10 +166,31 @@ function register_user($first_name, $last_name, $username, $email, $password) {
 		$msg = "Please click the link below to activate your account:
 				http://localhost/login/php_registration/activate.php?email=$email&code=$validation_code
 		";
+		$headers = "From: noreply@yourwebsite.com"; 
 
 		send_email($email, $subject, $msg, $headers);
 
 		return true;
+	} 
+}
+
+/************ Activate user Functions *****************/
+
+function activate_user() {
+	if($_SERVER['REQUEST_METHOD'] == 'GET') {
+		if(isset($_GET['email'])) {
+			$email = clean($_GET['email']);
+
+			$validation_code = clean($_GET['code']);
+			// Check to see if we have a row in the db if we do then we will activate
+			$sql = "SELECT id FROM users WHERE email '" . escape($email) . "' AND validation_code = '" . escape($validation_code) . "";
+			$result = query($sql);
+			confirm($result);
+
+			if(row_count($result) == 1) {
+				echo "<p class='bg-sucess>Your account has been activated please login</p>";
+			}
+		}
 	}
 }
 
