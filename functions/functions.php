@@ -123,6 +123,10 @@ function validate_user_registration() {
 			foreach($errors as $error) {
 				echo validation_errors($error);
 			}
+		} else {
+			if(register_user($first_name, $last_name, $username, $email, $password)) {
+				echo "User registered";
+			}
 		}
 	}
 }
@@ -149,7 +153,7 @@ function register_user($first_name, $last_name, $username, $email, $password) {
 		$result = query($sql);
 		confirm($result);
 
-		echo "USER REGISTERED";
+		return true;
 	}
 }
 
