@@ -43,7 +43,7 @@ $alerts = <<<DELIMETER
 </div>
 
 DELIMETER;
-echo $alerts;
+return $alerts;
 }
 
 function validate_user_registration() {
@@ -93,7 +93,7 @@ function validate_user_registration() {
 
 		if(!empty($errors)) {
 			foreach($errors as $error) {
-				validation_errors($error);
+				echo validation_errors($error);
 			}
 		}
 	}
