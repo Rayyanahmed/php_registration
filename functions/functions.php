@@ -129,7 +129,7 @@ function validate_user_registration() {
 
 
 // Functions for REGISTRATION
-
+// Wouldnt it be better to register only if errors array is empty?
 function register_user($first_name, $last_name, $username, $email, $password) {
 	$first_name = escape($first_name);
 	$last_name = escape($last_name);
@@ -143,7 +143,8 @@ function register_user($first_name, $last_name, $username, $email, $password) {
 		return false;
 	} else {
 		$password = md5($password);
-		$sql = "INSERT INTO";
+		$validation = md5($username + microtime());
+		$sql = "INSERT INTO users(first_name, last_name, username, email, password, validation_code, 0)";
 	}
 }
 
