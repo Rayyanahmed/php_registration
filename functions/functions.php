@@ -133,6 +133,10 @@ function validate_user_registration() {
 }
 
 
+function send_email($email, $subject, $msg, $headers) {
+	return mail($email, $subject, $msg, $headers)
+}
+
 // Functions for REGISTRATION
 // Wouldnt it be better to register only if errors array is empty?
 function register_user($first_name, $last_name, $username, $email, $password) {
