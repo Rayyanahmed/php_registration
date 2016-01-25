@@ -128,4 +128,25 @@ function validate_user_registration() {
 }
 
 
+// Functions for REGISTRATION
+
+function register_user($first_name, $last_name, $username, $email, $password) {
+	$first_name = escape($first_name);
+	$last_name = escape($last_name);
+	$username = escape($username);
+	$email = escape($email);
+	$password = escape($password);
+
+	if(email_exists($email)) {
+		return false;
+	} elseif(username_exists($username)) {
+		return false;
+	} else {
+		$password = md5($password);
+		$sql = "INSERT INTO";
+	}
+}
+
+
+
 ?>
