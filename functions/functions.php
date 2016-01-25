@@ -188,6 +188,9 @@ function activate_user() {
 			confirm($result);
 
 			if(row_count($result) == 1) {
+				$sql2 = "UPDATE users SET active = 1, validation_code = NULL WHERE email = '" . escape($email) . "' AND validation_code = '" . escape($validation_code) . "' " ;
+				$result2 = query($sql);
+				confirm($result2);
 				echo "<p class='bg-sucess>Your account has been activated please login</p>";
 			}
 		}
