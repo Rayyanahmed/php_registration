@@ -56,6 +56,16 @@ function email_exists($email) {
 	}
 }
 
+function username_exists($username) {
+	$sql = "SELECT id FROM users WHERE username = " . $username . " ";
+	$result = query($sql);
+	if(row_count($result) == 1) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 function validate_user_registration() {
 	$errors = [];
 
