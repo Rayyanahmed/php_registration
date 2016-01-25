@@ -46,6 +46,16 @@ DELIMETER;
 return $alerts;
 }
 
+function email_exists($email) {
+	$sql = "SELECT id FROM users WHERE email = " . $email . " ";
+	$result = query($sql);
+	if(row_count($result) == 1) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 function validate_user_registration() {
 	$errors = [];
 
