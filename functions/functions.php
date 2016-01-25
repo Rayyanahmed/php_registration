@@ -47,7 +47,7 @@ return $alerts;
 }
 
 function email_exists($email) {
-	$sql = "SELECT id FROM users WHERE email = " . $email . " ";
+	$sql = "SELECT id FROM users WHERE email = '$email'";
 	$result = query($sql);
 	if(row_count($result) == 1) {
 		return true;
@@ -57,7 +57,7 @@ function email_exists($email) {
 }
 
 function username_exists($username) {
-	$sql = "SELECT id FROM users WHERE username = " . $username . " ";
+	$sql = "SELECT id FROM users WHERE username = '$username'";
 	$result = query($sql);
 	if(row_count($result) == 1) {
 		return true;
@@ -103,8 +103,16 @@ function validate_user_registration() {
 			$errors[] = "Your username cannot be more than {$max} characters";
 		}
 
+		if(username_exists($username)) {
+			$errors[] = "Sorry that username is already registered";
+		}
+
 		if(strlen($email) > $max) {
 			$errors[] = "Your email cannot be more than {$max} characters";
+		}
+
+		if(email_exists($email)) {
+			$errors[] = "Sorry that email is already registered";
 		}
 
 		if($password != $confirm_password) {
