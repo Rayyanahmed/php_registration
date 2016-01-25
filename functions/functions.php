@@ -11,4 +11,13 @@ function redirect($location) {
 }
 
 
+function set_message($message) {
+	if(!empty($message)) {
+		$_SESSION['message'] = $message;
+	} else {
+		$message = "";
+	}
+}
+
+
 ?>
