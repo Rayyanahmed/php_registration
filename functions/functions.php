@@ -72,6 +72,14 @@ function validate_user_registration() {
 			$errors[] = "Your username cannot be more than {$max} characters";
 		}
 
+		if(strlen($email) > $max) {
+			$errors[] = "Your email cannot be more than {$max} characters";
+		}
+
+		if($password != $confirm_password) {
+			$errors[] = "Your password fields do not match";
+		}
+
 		if(!empty($errors)) {
 			foreach($errors as $error) {
 				$alerts = <<<DELIMETER
