@@ -35,6 +35,17 @@ function token_generator() {
 
 /******************** VALIDATION FUNCTIONS  *********************/
 
+function validation_errors($error) {
+$alerts = <<<DELIMETER
+<div class="alert alert-warning alert-dismissible" role="alert">
+<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<strong>Warning!</strong>{$error}
+</div>
+
+DELIMETER;
+echo $alerts;
+}
+
 function validate_user_registration() {
 	$errors = [];
 
@@ -82,14 +93,7 @@ function validate_user_registration() {
 
 		if(!empty($errors)) {
 			foreach($errors as $error) {
-				$alerts = <<<DELIMETER
-<div class="alert alert-warning alert-dismissible" role="alert">
-<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-<strong>Warning!</strong>{$error}
-</div>
-
-DELIMETER;
-echo $alerts;
+				validation_errors($error);
 			}
 		}
 	}
