@@ -158,6 +158,14 @@ function register_user($first_name, $last_name, $username, $email, $password) {
 		$result = query($sql);
 		confirm($result);
 
+		$subject = "Activate Account";
+		// Once they click on the email this is going to send a link with the email and validation code hashed and encrypted
+		$msg = "Please click the link below to activate your account:
+				http://localhost/login/php_registration/activate.php?email=$email&code=$validation_code
+		";
+
+		send_email($email, $subject, $msg, $headers);
+
 		return true;
 	}
 }
