@@ -191,7 +191,8 @@ function activate_user() {
 				$sql2 = "UPDATE users SET active = 1, validation_code = NULL WHERE email = '" . escape($email) . "' AND validation_code = '" . escape($validation_code) . "' " ;
 				$result2 = query($sql);
 				confirm($result2);
-				echo "<p class='bg-sucess>Your account has been activated please login</p>";
+				set_message("<p class='bg-sucess>Your account has been activated please login</p>");
+				redirect("login.php");
 			}
 		}
 	}
