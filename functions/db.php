@@ -20,7 +20,7 @@ function confirm($result) {
 	global $con;
 
 	if(!$result) {
-		die("QUERY FAILED");
+		die("QUERY FAILED" . mysqli_error($con));
 	}
 }
 
