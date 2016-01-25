@@ -36,6 +36,10 @@ function token_generator() {
 /******************** VALIDATION FUNCTIONS  *********************/
 
 function validate_user_registration() {
+	$errors = [];
+
+	$min = 3;
+	$max = 20;
 	if($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$first_name       =        clean($_POST['first_name']);
 		$last_name        =        clean($_POST['last_name']);
@@ -43,6 +47,12 @@ function validate_user_registration() {
 		$email            =        clean($_POST['email']);
 		$password         =        clean($_POST['password']);
 		$confirm_password =        clean($_POST['confirm_password']);
+
+		if(strlen($first_name) < $min) {
+			$errors[] = "Your first name cannot be less than {$min} characters";
+		}
+
+		
 	}
 }
 
