@@ -27,5 +27,9 @@ function display_message() {
 	}
 }
 
+function token_generator() {
+	$token = md5(uniqid(mt_rand(), true));
+}
+
 
 ?>
