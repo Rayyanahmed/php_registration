@@ -33,4 +33,13 @@ function token_generator() {
 }
 
 
+/******************** VALIDATION FUNCTIONS  *********************/
+
+function validate_user_registration() {
+	if(isset($_POST['register-submit'])) {
+		// execute validations. this is one way but its less compatible
+		// IE may give us problems so we will use SERVER superglobal instead
+	}
+}
+
 ?>
