@@ -180,7 +180,6 @@ function activate_user() {
 	if($_SERVER['REQUEST_METHOD'] == 'GET') {
 		if(isset($_GET['email'])) {
 			$email = clean($_GET['email']);
-
 			$validation_code = clean($_GET['code']);
 			// Check to see if we have a row in the db if we do then we will activate
 			$sql = "SELECT id FROM users WHERE email = '" . escape($email) . "' AND validation_code = '" . escape($validation_code) . "' ";
@@ -188,11 +187,16 @@ function activate_user() {
 			confirm($result);
 
 			if(row_count($result) == 1) {
-				$sql2 = "UPDATE users SET active = 1, validation_code = NULL WHERE email = '" . escape($email) . "' AND validation_code = '" . escape($validation_code) . "' " ;
+				$sql2 = "UPDATE users SET active = 1, validation_code = 0 WHERE email = '" . escape($email) . "' AND validation_code = '" . escape($validation_code) . "' " ;
 				$result2 = query($sql);
+				if($result2) {
+					echo "Updated!";
+				}
 				confirm($result2);
-				set_message("<p class='bg-sucess>Your account has been activated please login</p>");
-				redirect("login.php");
+				set_message("<p class='bg-sucsess>Your account has been activated please login</p>");
+				// redirect("login.php");
+			} else {
+				set_message("<p class='bg-danger'>Sorry your account has not been activated, please try again</p>");
 			}
 		}
 	}
