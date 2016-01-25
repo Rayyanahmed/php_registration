@@ -74,12 +74,18 @@ function validate_user_registration() {
 
 		if(!empty($errors)) {
 			foreach($errors as $error) {
-				echo $error;
+				$alerts = <<<DELIMETER
+<div class="alert alert-warning alert-dismissible" role="alert">
+<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<strong>Warning!</strong>{$error}
+</div>
+
+DELIMETER;
+echo $alerts;
 			}
 		}
 	}
 }
 
-validate_user_registration();
 
 ?>

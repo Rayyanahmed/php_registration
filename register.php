@@ -25,7 +25,9 @@
 						</div>
 						<hr>
 					</div>
+		
 					<div class="panel-body">
+						<?php validate_user_registration(); ?>
 						<div class="row">
 							<div class="col-lg-12">
 								<form id="register-form" method="post" role="form" >
