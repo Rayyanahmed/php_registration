@@ -125,13 +125,8 @@ function validate_user_registration() {
 			}
 		} else {
 			if(register_user($first_name, $last_name, $username, $email, $password)) {
-				$email_sent = <<<DELIMETER
-				<div class="alert alert-info alert-dismissible" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <strong>Heads Up!</strong> Email Confirmation Sent!
-</div>
-DELIMETER;
-echo $email_sent;
+				set_message("<p class='bg-success text-center'>Please check your email for activation link </p>");
+				redirect("index.php");
 			}
 		}
 	}
