@@ -187,11 +187,8 @@ function activate_user() {
 			confirm($result);
 
 			if(row_count($result) == 1) {
-				$sql2 = "UPDATE users SET active = 1, validation_code = 0 WHERE email = '" . escape($email) . "' AND validation_code = '" . escape($validation_code) . "' " ;
-				$result2 = query($sql);
-				if($result2) {
-					echo "Updated!";
-				}
+				$sql2 = "UPDATE users SET active = 1, validation_code = 0 WHERE email = '" . escape($email) . "' AND validation_code = '" . escape($validation_code) . "' ";
+				$result2 = query($sql2);
 				confirm($result2);
 				set_message("<p class='bg-sucsess>Your account has been activated please login</p>");
 				// redirect("login.php");
@@ -201,6 +198,8 @@ function activate_user() {
 		}
 	}
 }
+
+
 
 
 
