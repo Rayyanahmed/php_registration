@@ -94,10 +94,36 @@ function validate_user_login() {
 			echo validation_errors($error);
 		}
 	} else {
-		echo "No errors";
+		if(login_user($email, $password)) {
+			redirect("admin.php");
+		} else {
+			echo validation_errors("Your credentials are not correct");
+		}
 	}
 
 
+}
+
+// USER LOGIN FUNCTION
+
+function login_user($email, $password) {
+	$sql = "SELECT password, id FROM users WHERE email = '" . escape($email) . "'";
+	$result = query($sql);
+	confirm($result);
+	if(row_count($result) == 1) {
+		$row = fetch_array($sql);
+
+		$db_password = $row['password'];
+
+		if(md5($password) == $password) {
+			return true;
+		} else {
+			return false;
+		}
+
+	} else {
+		return false;
+	}
 }
 
 
