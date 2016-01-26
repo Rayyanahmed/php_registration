@@ -87,9 +87,7 @@ function validate_user_login() {
 				$errors[] = "Password cannot be empty";
 			}
 		}
-	}
-
-	if(!empty($errors)) {
+		if(!empty($errors)) {
 		foreach ($errors as $error) {
 			echo validation_errors($error);
 		}
@@ -100,8 +98,7 @@ function validate_user_login() {
 			echo validation_errors("Your credentials are not correct");
 		}
 	}
-
-
+	}
 }
 
 // USER LOGIN FUNCTION
