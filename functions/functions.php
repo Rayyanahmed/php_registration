@@ -66,6 +66,22 @@ function username_exists($username) {
 	}
 }
 
+// VALIDATE USER LOGIN
+
+
+function validate_user_login() {
+	$errors = [];
+	$min = 3;
+	$max = 20;
+
+	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		echo "It works";
+	}
+
+
+}
+
+
 function validate_user_registration() {
 	$errors = [];
 
@@ -134,6 +150,8 @@ function validate_user_registration() {
 		}
 	}
 }
+
+
 
 
 function send_email($email, $subject, $msg, $headers) {
