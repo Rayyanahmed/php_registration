@@ -75,7 +75,26 @@ function validate_user_login() {
 	$max = 20;
 
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-		echo "It works";
+		if(isset($_POST['email']) && isset($_POST['password'])) {
+			$email = clean($_POST['email']);
+			$password = clean($_POST['password']);
+
+			if(empty($email)) {
+				$errors[] = "Email field cannot be empty";
+			}
+
+			if(empty($password)) {
+				$errors[] = "Password cannot be empty";
+			}
+		}
+	}
+
+	if(!empty($errors)) {
+		foreach ($errors as $error) {
+			echo validation_errors($error);
+		}
+	} else {
+		echo "No errors";
 	}
 
 
